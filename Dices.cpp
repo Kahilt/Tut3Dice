@@ -11,7 +11,8 @@ public:
 	Dice(); //constructor
 	void Roll(); //modifier
 	void Display(); //outputs results
-	float average(Dice,int);
+	float average(Dice, int);
+	float average2(int[], int);
 	int total;
 	int noOfRolls;
 private:
@@ -44,9 +45,17 @@ void Dice::Display()
 
 float average(Dice myDice, int rolls)
 {
-	return (myDice.total / rolls);
+	return (myDice.total / (float)rolls);
 }
 
+float average2(int arr[], int size)
+{
+	int totalInArray = 0;
+	for (int i = 0; i < size; i++)
+		totalInArray += arr[i];
+	
+	return (totalInArray / (float)size);
+}
 
 int main()
 {
@@ -66,8 +75,19 @@ int main()
 		getline(cin, check);
 	}
 	float avg = average(dice1, dice1.noOfRolls);
-		cout << "The avergae of your rolls is" << avg << endl;
+		cout << "The average of your rolls is" << avg << endl; //outputs average of all rolls
 
+		
+		int sizeOfArray = 0;
+		cout << "Enter size of array" << endl;
+		cin >> sizeOfArray;
+		int arr[100];
+		for (int i = 0; i < sizeOfArray; i++)
+		{
+			cout << "Enter value" << endl;
+			cin >> arr[i];
+		}
 
-
+		float averageOfArray=dice1.average2(arr, sizeOfArray);
+		cout << "The average of the array is" <<averageOfArray<< endl;
 }
