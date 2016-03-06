@@ -24,7 +24,7 @@ private:
 
 Dice::Dice() :result(0), noOfRolls(0), total(0)
 {
-	srand(time(NULL)); // For random number generation
+	srand((unsigned int)time(NULL)); // For random number generation
 }
 
 void Dice::Roll()
@@ -48,11 +48,11 @@ float average(Dice myDice, int rolls)
 	return (myDice.total / (float)rolls);
 }
 
-float average2(int arr[], int size)
+float average2(int arr1[], int size)
 {
-	int totalInArray = 0;
+	float totalInArray = 0;
 	for (int i = 0; i < size; i++)
-		totalInArray += arr[i];
+		totalInArray += arr1[i];
 	
 	return (totalInArray / (float)size);
 }
@@ -60,34 +60,37 @@ float average2(int arr[], int size)
 int main()
 {
 	string check;
-	srand(time(NULL)); // For random number generation
+	srand((unsigned int)time(NULL)); // For random number generation
 	Dice dice1;
 	dice1.Roll();
 	dice1.Display();
-	cout << "Enter stop to stop rolling dice or press enter to roll again" << endl;
+	cout << "Enter stop to stop rolling dice or press enter to roll again " << endl;
 	getline(cin, check);
 	
 	while (check.compare("stop")!=0)
 	{
 		dice1.Roll();
 		dice1.Display();
-		cout << "Enter stop to stop rolling dice or press enter to roll again" << endl;
+		cout << "Enter stop to stop rolling dice or press enter to roll again " << endl;
 		getline(cin, check);
 	}
+	
 	float avg = average(dice1, dice1.noOfRolls);
-		cout << "The average of your rolls is" << avg << endl; //outputs average of all rolls
-
+		cout << "The average of your rolls is " << avg << endl; //outputs average of all rolls
+		
 		
 		int sizeOfArray = 0;
-		cout << "Enter size of array" << endl;
+		cout << "Enter size of array " << endl;
 		cin >> sizeOfArray;
 		int arr[100];
 		for (int i = 0; i < sizeOfArray; i++)
 		{
-			cout << "Enter value" << endl;
+			cout << "Enter value " << endl;
 			cin >> arr[i];
 		}
+		
+		float averageOfArray=0;
+		averageOfArray=average2(arr, sizeOfArray);
 
-		float averageOfArray=dice1.average2(arr, sizeOfArray);
-		cout << "The average of the array is" <<averageOfArray<< endl;
+		cout << "The average of the array is " <<averageOfArray<< endl;
 }
